@@ -4,7 +4,7 @@ import { internalError, httpStatus } from '@/constants/errors'
 class InternalError extends BaseError {
   internalError: object | string
 
-  constructor(error: object, code = internalError.code, message = internalError.msg) {
+  constructor(error: Error, code = internalError.code, message = internalError.msg) {
     super(code, internalError.reason, httpStatus.INTERNAL_SERVER, message)
     this.internalError = error
   }

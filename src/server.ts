@@ -13,6 +13,7 @@ import requestLogger from '@/middlewares/requestLogger/requestLogger'
 import errorLogger from '@/middlewares/errorLogger/errorLogger'
 import logger from '@/utils/logger'
 import errorHandler from '@/middlewares/errorHandler/errorHandler'
+import { initDb } from '@/db/connection'
 import routes from '@/routes'
 import config from './config'
 
@@ -28,12 +29,20 @@ app.use(config.basePath, routes)
 app.use(errorLogger(logger))
 app.use(errorHandler)
 
-app.listen(config.port, () => {
-  logger.info(`Started ${process.env.NODE_ENV} mode on port ${config.port}`)
+initDb((dbError: Error | null) => {
+  if (dbError !== null) logger.error(`Failed to create database pool: ${JSON.stringify(dbError)}`)
+
+  app
+    .listen(config.port, () => {
+      logger.info(`Started ${process.env.NODE_ENV} mode on port ${config.port}`)
+    })
+    .on('error', (appError) => {
+      logger.error(`Failed to start app on port ${config.port}: ${JSON.stringify(appError)}`)
+    })
 })
 
 process.on('uncaughtException', () => {
-  // Already logged in winston logger
+  // Already logged the error in winston logger
   process.exit(1)
 })
 

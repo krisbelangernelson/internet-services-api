@@ -27,3 +27,8 @@ export const badRequestError = {
   msg: 'Invalid request',
   reason: 'Bad Request'
 }
+
+export const dbError = {
+  code: 'ERR-500',
+  msg: `Database error. Please try again. If the problem persists, please contact the support group ${email}`
+}
