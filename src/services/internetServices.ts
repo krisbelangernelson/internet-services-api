@@ -7,7 +7,7 @@ const getInternetServices = async (): Promise<object[]> => {
 
   const result = await db.query(select)
 
-  return await Promise.resolve(result.rows) // eslint-disable-line
+  return await Promise.resolve(result.rows)
 }
 
 export default { getInternetServices }

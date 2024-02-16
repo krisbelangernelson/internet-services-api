@@ -1,10 +1,10 @@
 import * as pool from './connection'
 import logger from '@/utils/logger'
-import { type Pool, type QueryResult } from 'pg'
+import { type Pool } from 'pg'
 
 interface CustomPool {
   pool: Pool
-  query: (text: string, params?: string[], failMsg?: any) => Promise<QueryResult<any>> // eslint-disable-line @typescript-eslint/no-explicit-any
+  query: (text: string, params?: string[], failMsg?: string) => Promise<pool.GenericQueryResult<pool.InternetService[]>>
 }
 
 type Callback = (dbError: Error | null) => void

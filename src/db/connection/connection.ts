@@ -4,6 +4,23 @@ import { host, user, password, database, port } from './config'
 import { dbError } from '@/constants/errors'
 import { InternalError, ConflictError } from '@/utils/httpErrors'
 
+export interface InternetService {
+  bandwidth_down: number
+  bandwidth_up: number
+  label: string
+  name: string
+  description: string
+  price: number
+  type: string
+  category: string
+  ideal_num_users: string
+  ideal_num_devices: string
+}
+
+export interface GenericQueryResult<InternetService> extends QueryResult {
+  rows: InternetService[]
+}
+
 const pool = new Pool({
   database,
   user,
@@ -36,8 +53,8 @@ pool.on('error', (error) => {
 const query = async (
   text: string,
   params?: string[],
-  failMsg?
-): Promise<QueryResult<any>> => // eslint-disable-line @typescript-eslint/no-explicit-any
+  failMsg?: string
+): Promise<GenericQueryResult<InternetService[]>> =>
   await pool.query(text, params).catch((error: Error) => {
     if (String(error).includes('duplicate key')) {
       const errorObj = {
