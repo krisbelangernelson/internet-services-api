@@ -14,13 +14,10 @@ let db: CustomPool
 const initDb = (callback: Callback): void => {
   if (db !== undefined) {
     logger.warn('Trying to init DB again!')
-    // return callback(null, db)
     callback(null)
-    return
   }
 
   db = pool
-  // return callback(null, db)
   callback(null)
 }
 

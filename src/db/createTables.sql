@@ -9,11 +9,11 @@ CREATE TABLE connection_type (
 );
 
 CREATE TABLE service_user (
-  id smallserial PRIMARY KEY,
+  id serial PRIMARY KEY,
   first_name varchar(20),
   last_name varchar(40),
-  email varchar(40),
-  phone varchar(15),
+  email varchar(40) UNIQUE,
+  phone varchar(15) UNIQUE,
   credit_card_company varchar(20),
   credit_card_number varchar(20),
   create_date TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP
@@ -34,9 +34,9 @@ CREATE TABLE internet_service (
 );
 
 CREATE TABLE internet_order (
-  id smallserial PRIMARY KEY,
+  id serial PRIMARY KEY,
   service_id smallserial REFERENCES internet_service (id),
-  user_id smallserial REFERENCES service_user (id),
+  user_id serial REFERENCES service_user (id),
   order_date TIMESTAMP WITHOUT TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 

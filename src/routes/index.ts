@@ -25,7 +25,7 @@ router.get('/version', (_req, res) => {
   return res.send(`Version: ${version}`)
 })
 
-router.get('/internet', getInternetServices)
+router.get('/api/internet-services', getInternetServices)
 
 router.get('*', async (req, res) => await invalidRoute(req, res))
 router.post('*', async (req, res) => await invalidRoute(req, res))
