@@ -1,10 +1,9 @@
-import type { RequestHandler, Request, Response } from 'express'
+import type { Request, Response } from 'express'
 import internetServices from '@/services/internetServices'
 import { errorResponses } from '@/utils/httpErrors/errorResponses'
-import { type Error } from '@/model/error.d'
+import { type Error } from '@/types/error'
 
-/* eslint-disable @typescript-eslint/no-misused-promises */
-const getInternetServices: RequestHandler = async (_req: Request, res: Response): Promise<Response> => {
+const getInternetServices = async (_req: Request, res: Response): Promise<Response> => {
   return await internetServices
     .getInternetServices()
     .then((results) => res.json(results))

@@ -1,5 +1,7 @@
 # internet-services-api
 
+This is a Node/Express API to be used in conjunction with the front-end https://github.com/krisbelangernelson/internet-provider-ui. See that repo for more details.
+
 ## PostgreSQL
 
 - Install PostgreSQL 15
@@ -20,7 +22,7 @@ GRANT Postgres TO username;
 
 `CREATE DATABASE new_bd;`
 
-- create the tables
+- create the tables (in `src/db`)
 
 ## env
 

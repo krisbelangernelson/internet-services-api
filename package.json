@@ -2,14 +2,34 @@
   "name": "internet-services-api",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
+  "engines": {
+    "node": ">=18"
+  },
   "scripts": {
+    "build:development": "tsc --outDir dist/development/",
+    "build:staging": "tsc --outDir dist/staging/",
+    "build:production": "tsc --outDir dist/production/",
     "dev": "npx nodemon --watch src src/server.ts",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix .",
+    "prettier": "prettier --config .prettierrc.js ./**/*",
+    "prettier:app": "npm run prettier:check",
+    "prettier:check": "npm run prettier -- --check",
+    "prettier:write": "npm run prettier -- --write",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/krisbelangernelson/internet-services-api.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "krisbelangernelson",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/krisbelangernelson/internet-services-api/issues"
+  },
+  "homepage": "https://github.com/krisbelangernelson/internet-services-api#readme",
   "dependencies": {
     "body-parser": "^1.20.2",
     "compression": "^1.7.4",

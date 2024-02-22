@@ -1,5 +1,5 @@
-import type { ServerConfigType } from './types';
-import common from './common';
+import type { ServerConfigType } from './types'
+import common from './common'
 
 export default {
   ...common,
@@ -15,4 +15,7 @@ export default {
     colorize: true,
     timestamp: true
   },
-} satisfies ServerConfigType;
+  cors: {
+    origin: 'http://localhost:8080'
+  }
+} satisfies ServerConfigType

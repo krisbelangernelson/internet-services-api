@@ -3,21 +3,9 @@ import logger from '@/utils/logger'
 import { host, user, password, database, port } from './config'
 import { dbError } from '@/constants/errors'
 import { InternalError, ConflictError } from '@/utils/httpErrors'
+import { type InternetService } from '@/types/services'
 
-export interface InternetService {
-  bandwidth_down: number
-  bandwidth_up: number
-  label: string
-  name: string
-  description: string
-  price: number
-  type: string
-  category: string
-  ideal_num_users: string
-  ideal_num_devices: string
-}
-
-export interface GenericQueryResult<InternetService> extends QueryResult {
+export interface GenericQueryResult extends QueryResult {
   rows: InternetService[]
 }
 
@@ -29,8 +17,7 @@ const pool = new Pool({
   port,
   ssl: false,
   max: 20,
-  connectionTimeoutMillis: 10000,
-  maxUses: 175
+  connectionTimeoutMillis: 10000
 })
 
 // possible fix for 'Connection terminated unexpectedly'
@@ -50,11 +37,7 @@ pool.on('error', (error) => {
   logger.error(error)
 })
 
-const query = async (
-  text: string,
-  params?: string[],
-  failMsg?: string
-): Promise<GenericQueryResult<InternetService[]>> =>
+const query = async (text: string, params?: string[], failMsg?: string): Promise<GenericQueryResult> =>
   await pool.query(text, params).catch((error: Error) => {
     if (String(error).includes('duplicate key')) {
       const errorObj = {

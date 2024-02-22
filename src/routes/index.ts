@@ -18,14 +18,14 @@ const invalidRoute = async (req: Request, res: Response): Promise<Response> => {
   // be sent
   const aError = { ...errData }
   logger.info(errData)
-  return await Promise.resolve(res.status(404).send(aError))
+  return await Promise.resolve(res.status(errData.status).send(aError))
 }
 
 router.get('/version', (_req, res) => {
   return res.send(`Version: ${version}`)
 })
 
-router.get('/api/internet-services', getInternetServices)
+router.get('/api/v1/internet-services', getInternetServices)
 
 router.get('*', async (req, res) => await invalidRoute(req, res))
 router.post('*', async (req, res) => await invalidRoute(req, res))

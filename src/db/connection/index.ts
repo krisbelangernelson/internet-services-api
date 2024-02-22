@@ -4,7 +4,7 @@ import { type Pool } from 'pg'
 
 interface CustomPool {
   pool: Pool
-  query: (text: string, params?: string[], failMsg?: string) => Promise<pool.GenericQueryResult<pool.InternetService[]>>
+  query: (text: string, params?: string[], failMsg?: string) => Promise<pool.GenericQueryResult>
 }
 
 type Callback = (dbError: Error | null) => void

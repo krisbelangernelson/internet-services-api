@@ -9,17 +9,17 @@ import cors from 'cors'
 import express from 'express'
 import compression from 'compression'
 import { stringifyInspect } from '@/utils/utils'
-import requestLogger from '@/middlewares/requestLogger/requestLogger'
-import errorLogger from '@/middlewares/errorLogger/errorLogger'
+import requestLogger from '@/middlewares/requestLogger'
+import errorLogger from '@/middlewares/errorLogger'
 import logger from '@/utils/logger'
-import errorHandler from '@/middlewares/errorHandler/errorHandler'
+import errorHandler from '@/middlewares/errorHandler'
 import { initDb } from '@/db/connection'
 import routes from '@/routes'
 import config from './config'
 
 const app = express()
 
-app.use(cors())
+app.use(cors(config.cors))
 app.use(compression())
 app.disable('x-powered-by')
 app.use(express.json())
