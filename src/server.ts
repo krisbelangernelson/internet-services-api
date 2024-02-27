@@ -16,6 +16,7 @@ import errorHandler from '@/middlewares/errorHandler'
 import { initDb } from '@/db/connection'
 import routes from '@/routes'
 import config from './config'
+import { internalError } from '@/constants/errors'
 
 const app = express()
 
@@ -49,8 +50,8 @@ process.on('uncaughtException', () => {
 process.on('unhandledRejection', (reason: string, promise) => {
   logger.error(
     JSON.stringify({
-      code: 'ERR-500',
-      reason: 'Internal Error',
+      code: internalError.code,
+      reason: internalError.reason,
       message: `Unhandled Rejection at: ${stringifyInspect(promise)}, Reason: ${reason}`
     })
   )
