@@ -40,7 +40,7 @@ CREATE TABLE internet_order (
   service_street varchar(30),
   service_city varchar(30),
   service_province varchar(20),
-  service_postal_code varchar(6),
+  service_postal_code varchar(7),
   state smallint DEFAULT 1 REFERENCES order_state (id),
   order_date timestamp without time zone DEFAULT CURRENT_TIMESTAMP
 );
