@@ -66,3 +66,5 @@ process.on('SIGTERM', () => {
   logger.info('SIGTERM shutting down')
   process.exit(0)
 })
+
+export default app

@@ -2,15 +2,16 @@
   "name": "internet-services-api",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "index.js",
   "engines": {
     "node": ">=18"
   },
   "scripts": {
+    "build": "tsc --outDir dist",
     "build:development": "tsc --outDir dist/development/",
     "build:staging": "tsc --outDir dist/staging/",
     "build:production": "tsc --outDir dist/production/",
-    "dev": "npx nodemon --watch src src/server.ts",
+    "dev": "npx nodemon --watch src src/index.ts",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "prettier": "prettier --config .prettierrc.js ./**/*",
