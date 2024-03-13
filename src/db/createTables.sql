@@ -33,6 +33,11 @@ CREATE TABLE internet_service (
   ideal_num_devices varchar(10)
 );
 
+CREATE TABLE order_state (
+  id smallserial PRIMARY KEY,
+  name varchar(20) UNIQUE 
+);
+
 CREATE TABLE internet_order (
   id serial PRIMARY KEY,
   service_id smallint REFERENCES internet_service (id),
@@ -44,9 +49,3 @@ CREATE TABLE internet_order (
   state smallint DEFAULT 1 REFERENCES order_state (id),
   order_date timestamp without time zone DEFAULT CURRENT_TIMESTAMP
 );
-
-CREATE TABLE order_state (
-  id smallserial PRIMARY KEY,
-  name varchar(20) UNIQUE 
-);
-
