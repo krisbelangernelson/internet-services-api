@@ -6,12 +6,12 @@ export default {
   basePath: '/',
   email: 'admin@domain.com',
   logging: {
-    prettyPrint: true,
-    level: 'debug',
+    prettyPrint: false,
+    level: 'info',
     stringify: false,
-    humanReadableUnhandledException: true,
+    humanReadableUnhandledException: false,
     json: true,
-    colorize: true,
+    colorize: false,
     timestamp: true
   },
   cors: {

@@ -2,16 +2,15 @@
   "name": "internet-services-api",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "engines": {
     "node": ">=18"
   },
   "scripts": {
-    "build": "tsc",
-    "build:development": "tsc --outDir dist/development/",
-    "build:staging": "tsc --outDir dist/staging/",
-    "build:production": "tsc --outDir dist/production/",
-    "dev": "npx nodemon --watch src src/index.ts",
+    "build": "set APP_ENV=production && tsc --outDir dist/production/",
+    "build:local": "set APP_ENV=local && tsc --outDir dist/local/",
+    "build:production": "set APP_ENV=production && tsc --outDir dist/production/",
+    "dev": "npx nodemon --watch src src/server.ts",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "prettier": "prettier --config .prettierrc.js ./**/*",
