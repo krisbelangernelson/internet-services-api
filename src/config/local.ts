@@ -3,6 +3,7 @@ import common from './common'
 
 export default {
   ...common,
+  port: 5000,
   basePath: '/',
   email: 'admin@domain.com',
   logging: {

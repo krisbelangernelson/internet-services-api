@@ -1,11 +1,13 @@
 import type { Request, Response } from 'express'
-import internetServices from '@/services/internetServices'
+import * as internetServices from '@/services/internetServices'
 import { errorResponses } from '@/utils/httpErrors/errorResponses'
 import { type Error } from '@/types/error'
+import { pgModel } from '@/models/pg'
+
+const getAllServices = internetServices.findAllInternetServices(pgModel)
 
 const getInternetServices = async (_req: Request, res: Response): Promise<void> => {
-  await internetServices
-    .getInternetServices()
+  await getAllServices()
     .then((results) => res.json(results))
     .catch((error: Error) => errorResponses(res, error, 'getInternetServices'))
 }
